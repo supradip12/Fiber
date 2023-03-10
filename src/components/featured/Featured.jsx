@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Featured.scss"
+import bg from "../../assets/img/man.png"
 const Featured = () => {
   return (
    <div className="featured">
@@ -10,7 +11,7 @@ const Featured = () => {
        </h1>
        <div className="search">
          <div className="searchInput">
-           <img src="./img/search.png" alt="" />
+           <img src="" alt="" />
            <input type="text" placeholder='Try "building mobil app"' />
          </div>
          <button>Search</button>
@@ -24,7 +25,7 @@ const Featured = () => {
        </div>
      </div>
      <div className="right">
-       <img src="./img/man.png" alt="" />
+       <img src={bg} alt="" />
      </div>
    </div>
  </div>
