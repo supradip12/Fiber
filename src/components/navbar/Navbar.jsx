@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import "./Navbar.scss"
 const Navbar = () => { 
 
   const [active,setactive] = useState(false)
   const [open,setopen] = useState(false)
-  
+  const {pathname} = useLocation()
   const isActive =()=>{
     window.scrollY> 0?setactive(true):setactive(false)
   }
@@ -22,12 +23,15 @@ const Navbar = () => {
   }
 
   return (
-    <div className={active?'navbar active':'navbar'}>
+    <div className={active || pathname!== "/"?'navbar active':'navbar'}>
       <div className="container">
+       <Link to="/" className='link' >        
        <div className="logo">
        <span className='text'>fiberr</span>
        <span className='dot'>.</span>
        </div>
+       </Link>
+      
 
       <div className="links">
        <span>lodu</span>
@@ -47,13 +51,13 @@ const Navbar = () => {
           {currentuser?.isSeller &&
           (
             <>
-            <span>gigs</span>
-            <span>Add new gigs</span>
+           <Link to="/mygigs" className='link'> <span>gigs</span> </Link>
+            <Link to="/add" className='link'><span>Add new gigs</span></Link>
             </>           
           )}
-          <span>Orders</span>
-          <span>message</span>
-          <span>Logout</span>
+          <Link to="/orders" className='link'><span>Orders</span></Link>
+          <Link to="/message" className='link'><span>message</span></Link>
+          <Link to="/" className='link'><span>Logout</span></Link>
           </div>}
           
         </div>
@@ -61,13 +65,39 @@ const Navbar = () => {
 
        </div>
      </div>
-     {active &&(
+     {active || pathname!== "/" &&(
       <>
        <hr className='hr'/>
-     <div className="menu">
-      <span>menu</span>
-      <span>menu</span>
-     </div>
+       <div className="menu">
+            <Link className="link menuLink" to="/">
+              Graphics & Design
+            </Link>
+            <Link className="link menuLink" to="/">
+              Video & Animation
+            </Link>
+            <Link className="link menuLink" to="/">
+              Writing & Translation
+            </Link>
+            <Link className="link menuLink" to="/">
+              AI Services
+            </Link>
+            <Link className="link menuLink" to="/">
+              Digital Marketing
+            </Link>
+            <Link className="link menuLink" to="/">
+              Music & Audio
+            </Link>
+            <Link className="link menuLink" to="/">
+              Programming & Tech
+            </Link>
+            <Link className="link menuLink" to="/">
+              Business
+            </Link>
+            <Link className="link menuLink" to="/">
+              Lifestyle
+            </Link>
+          </div>
+          <hr/>
       </>
      )
     }
